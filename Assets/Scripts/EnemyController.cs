@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     bool broken = true;
 
     Animator anim;
+
+    [SerializeField] ParticleSystem smokeEffect;
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -77,5 +79,6 @@ public class EnemyController : MonoBehaviour
         broken = false;
         rb2D.simulated = false;
         anim.SetTrigger("Fixed");
+        smokeEffect.Stop();
     }
 }
