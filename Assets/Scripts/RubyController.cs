@@ -23,12 +23,17 @@ public class RubyController : MonoBehaviour
     Animator anim;
     Vector2 lookDirection = new Vector2(1, 0);
 
+    AudioSource audioSource;
+    public AudioClip throwingCog;
+
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
         currentHealth = maxHealth;
+
+        audioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -104,5 +109,11 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         anim.SetTrigger("Launch");
+
+        PlaySound(throwingCog);
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }
